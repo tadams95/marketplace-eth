@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useWeb3 } from "@/components/providers";
 
 export default function Navbar() {
-  const { connect, test } = useWeb3();
+  const { connect, isLoading, web3 } = useWeb3();
 
   return (
     <section>
@@ -36,14 +36,23 @@ export default function Navbar() {
               >
                 Wishlist
               </Link>
-
-              <Link
-                href="/"
-                className="rounded-md shadow font-medium mr-8 px-8 py-3 text-base text-white bg-indigo-600 hover:bg-indigo-800"
-                onClick={connect}
-              >
-                Connect
-              </Link>
+              {!isLoading && web3 ? (
+                <Link
+                  href="/"
+                  className="rounded-md shadow font-medium mr-8 px-8 py-3 text-base text-white bg-indigo-600 hover:bg-indigo-800"
+                  onClick={connect}
+                >
+                  Connect
+                </Link>
+              ) : (
+                <Link
+                  href="/"
+                  className="rounded-md shadow font-medium mr-8 px-8 py-3 text-base text-white bg-indigo-600 hover:bg-indigo-800"
+                  onClick={connect}
+                >
+                  Install a Web3 Wallet
+                </Link>
+              )}
             </div>
           </div>
         </nav>
