@@ -41,17 +41,18 @@ export default function Web3Provider({ children }) {
   }, []);
 
   const _web3Api = useMemo(() => {
+    const { web3, provider } = web3Api;
     return {
       ...web3Api,
       isWeb3Loaded: web3Api.web3 != null,
-      hooks: setupHooks(),
-      connect: web3Api.provider
+      getHooks: () => setupHooks(web3),
+      connect: provider
         ? async () => {
             try {
-              await web3Api.provider.request({ method: "eth_requestAccounts" });
+              await provider.request({ method: "eth_requestAccounts" });
             } catch {
               console.error("Cannot retreive account");
-              location.reload()
+              location.reload();
             }
           }
         : () =>
@@ -68,4 +69,10 @@ export default function Web3Provider({ children }) {
 
 export function useWeb3() {
   return useContext(Web3Context);
+}
+
+export function useHooks(callback) {
+  const { getHooks } = useWeb3();
+
+  return callback(getHooks());
 }
