@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { useWeb3 } from "@/components/providers";
 import Button from "../button";
-import { useRouter } from "next/router";
 
 export default function Navbar() {
   const { connect, isLoading, isWeb3Loaded } = useWeb3();
-  const router = useRouter();
 
   return (
     <section>
@@ -46,7 +44,14 @@ export default function Navbar() {
               ) : isWeb3Loaded ? (
                 <Button onClick={connect}>Connect</Button>
               ) : (
-                <Button onClick={() => {router.push("https://www.coinbase.com/wallet/downloads")}}>Install Wallet</Button>
+                <Button
+                  onClick={() => {
+                    window.open("https://www.coinbase.com/wallet/downloads"),
+                      "_blank";
+                  }}
+                >
+                  Install Wallet
+                </Button>
               )}
             </div>
           </div>
