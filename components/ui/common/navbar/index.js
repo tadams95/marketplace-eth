@@ -6,12 +6,11 @@ import { useAccount } from "@/components/web3/hooks/useAccount";
 export default function Navbar() {
   const { connect, isLoading, isWeb3Loaded } = useWeb3();
 
-  const { account } = useAccount()
-
+  const { account } = useAccount();
 
   return (
     <section>
-      {account}
+      
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
         <nav className="relative" aria-label="Global">
           <div className="flex justify-between items-center">
@@ -47,15 +46,23 @@ export default function Navbar() {
                   Loading...
                 </Button>
               ) : isWeb3Loaded ? (
-                <Button onClick={connect}>Connect</Button>
+                account ? (
+                  <Button hoverable={false} className="cursor-default">
+                    Hi there
+                  </Button>
+                ) : (
+                  <Button onClick={connect}>Connect</Button>
+                )
               ) : (
                 <Button
-                  onClick={() => {
-                    window.open("https://www.coinbase.com/wallet/downloads"),
-                      "_blank";
-                  }}
+                  onClick={() =>
+                    window.open(
+                      "https://www.coinbase.com/wallet/downloads",
+                      "_blank"
+                    )
+                  }
                 >
-                  Install Wallet
+                  Install Metamask
                 </Button>
               )}
             </div>
