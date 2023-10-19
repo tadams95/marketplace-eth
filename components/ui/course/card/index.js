@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Card({ course }) {
+export default function Card({ course, Footer }) {
   return (
-    <div
-      className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl"
-    >
+    <div className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
       <div className="md:flex">
         <div className="md:flex-shrink-0">
           <Image
@@ -22,6 +20,7 @@ export default function Card({ course }) {
           </div>
           <Link href={`/courses/${course.slug}`}>{course.title}</Link>
           <p className="mt-2 text-gray-500">{course.description}</p>
+          {Footer && <Footer></Footer>}
         </div>
       </div>
     </div>
