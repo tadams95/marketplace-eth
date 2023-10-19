@@ -1,4 +1,4 @@
-import { Button } from "@/components";
+import { Button, Modal } from "@/components";
 import { useAccount } from "@/components/hooks/web3/useAccount";
 import { useNetwork } from "@/components/hooks/web3/useNetwork";
 
@@ -28,14 +28,15 @@ export default function Marketplace({ courses }) {
           <CourseCard
             key={course.id}
             course={course}
-            Footer={() => <div className="mt-4">
-              <Button variant="lightPurple">
+            Footer={() => <div >
+              <Button variant="lightPurple" >
                 Purchase
               </Button>
             </div>}
           />
         )}
       </CourseList>
+      <Modal isOpen={false}/>
     </>
   );
 }
