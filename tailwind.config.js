@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      flex: {
+        2: "2 2 0%",
+      },
+      maxWidth: {
+        "8xl": "1920px"
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
