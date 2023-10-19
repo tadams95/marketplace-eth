@@ -8,8 +8,10 @@ import { OrderModal } from "@/components/ui/order";
 import { Walletbar } from "@/components/ui/web3";
 
 import { getAllCourses } from "@/content/courses/fetcher";
+import { useState } from "react";
 
 export default function Marketplace({ courses }) {
+  const [selectedCourse, setSelectedCourse] = useState(null);
   const { account } = useAccount();
   const { network } = useNetwork();
 
@@ -29,15 +31,26 @@ export default function Marketplace({ courses }) {
           <CourseCard
             key={course.id}
             course={course}
-            Footer={() => <div >
-              <Button variant="lightPurple" >
-                Purchase
-              </Button>
-            </div>}
+            Footer={() => (
+              <div>
+                <Button
+                  onClick={() => setSelectedCourse(course)}
+                  variant="lightPurple"
+                >
+                  Purchase
+                </Button>
+              </div>
+            )}
           />
         )}
       </CourseList>
-      <OrderModal/>
+
+      {selectedCourse && (
+        <OrderModal
+          course={selectedCourse}
+          onClose={() => setSelectedCourse(null)}
+        />
+      )}
     </>
   );
 }
