@@ -7,7 +7,7 @@ export default function EthRates({ eth, ethPerItem }) {
         <div className="p-10 border drop-shadow rounded-md">
           <div className="flex items-center">
             <Image
-              layout="fixed"
+              // layout="fixed"
               height="35"
               width="35"
               src="/small-eth.webp"
@@ -20,8 +20,16 @@ export default function EthRates({ eth, ethPerItem }) {
       </div>
       <div className="flex flex-1 items-stretch text-center">
         <div className="p-10 border drop-shadow rounded-md">
-          <div>
-            <span className="text-2xl font-bold">{ethPerItem} = $15</span>
+          <div className="flex items-center">
+            <span className="text-2xl font-bold">{ethPerItem}</span>
+            <Image
+              layout="fixed"
+              height="35"
+              width="35"
+              src="/small-eth.webp"
+              alt=""
+            />
+            <span className="text-2xl font-bold">= 15$</span>
           </div>
           <p className="text-xl text-gray-500">Price per course</p>
         </div>
