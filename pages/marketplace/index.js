@@ -1,36 +1,22 @@
 import { Breadcrumbs, Button } from "@/components";
-import { useAccount } from "@/components/hooks/web3/useAccount";
-import { useEthPrice } from "@/components/hooks/web3/useETHprice";
-import { useNetwork } from "@/components/hooks/web3/useNetwork";
 import { useWalletInfo } from "@/components/hooks/web3/useWalletInfo";
 
 import { CourseCard, CourseList } from "@/components/ui/course";
 import { BaseLayout } from "@/components/ui/layout";
+import { MarketHeader } from "@/components/ui/marketplace";
 import { OrderModal } from "@/components/ui/order";
-import { EthRates, Walletbar } from "@/components/ui/web3";
 
 import { getAllCourses } from "@/content/courses/fetcher";
 import { useState } from "react";
 
 export default function Marketplace({ courses }) {
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const { account, network, canPurchaseCourse } = useWalletInfo();
-  const { eth } = useEthPrice();
+  const { canPurchaseCourse } = useWalletInfo();
 
   return (
     <>
-      <div className="pt-4">
-        <Walletbar
-          address={account.data}
-          network={network.data}
-          targetNetword={network.target}
-          isSupported={network.isSupported}
-        />
-
-        <EthRates eth={eth.data} ethPerItem={eth.perItem} />
-        <div className="flex flex-row-reverse py-4 px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs />
-        </div>
+      <div className="py-4">
+        <MarketHeader />
       </div>
 
       <CourseList courses={courses}>
