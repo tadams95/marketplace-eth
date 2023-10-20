@@ -2,6 +2,7 @@ import { Button } from "@/components";
 import { useAccount } from "@/components/hooks/web3/useAccount";
 import { useEthPrice } from "@/components/hooks/web3/useETHprice";
 import { useNetwork } from "@/components/hooks/web3/useNetwork";
+import { useWalletInfo } from "@/components/hooks/web3/useWalletInfo";
 
 import { CourseCard, CourseList } from "@/components/ui/course";
 import { BaseLayout } from "@/components/ui/layout";
@@ -13,11 +14,10 @@ import { useState } from "react";
 
 export default function Marketplace({ courses }) {
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const { account } = useAccount();
-  const { network } = useNetwork();
+  const {account, network, canPurchaseCourse} = useWalletInfo()
   const { eth } = useEthPrice();
 
-  const canPurchaseCourse = !!(account.data && network.isSupported);
+  
 
   return (
     <>
