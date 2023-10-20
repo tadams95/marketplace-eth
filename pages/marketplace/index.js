@@ -27,7 +27,7 @@ export default function Marketplace({ courses }) {
           isSupported={network.isSupported}
         />
 
-        <EthRates eth={eth.data} />
+        <EthRates eth={eth.data} ethPerItem={eth.perItem} />
       </div>
 
       <CourseList courses={courses}>
