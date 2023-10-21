@@ -30,7 +30,7 @@ export default function Navbar() {
                 Marketplace
               </Link>
               <Link
-                href="/"
+                href="/blogs"
                 className="font-medium mr-8 text-gray-500 hover:text-gray-900"
               >
                 Blogs
@@ -38,7 +38,7 @@ export default function Navbar() {
             </div>
             <div>
               <Link
-                href="/"
+                href="/wishlist"
                 className="font-medium mr-8 text-gray-500 hover:text-gray-900"
               >
                 Wishlist
