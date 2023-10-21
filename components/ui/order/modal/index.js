@@ -14,22 +14,25 @@ const _createFormState = (isDisabled = false, message = "") => ({
   message,
 });
 
-const createFormState = ({ price, email, confirmationEmail }) => {
+const createFormState = ({ price, email, confirmationEmail }, acceptedTOS) => {
   if (!price || Number(price) <= 0) {
     return _createFormState(true, "Price is not valid.");
   } else if (confirmationEmail.length === 0 || email.length === 0) {
     return _createFormState(true);
   } else if (email !== confirmationEmail) {
-    return _createFormState(true, "Email are not matching.");
+    return _createFormState(true, "Emails are not matching.");
+  } else if (!acceptedTOS) {
+    return _createFormState(true, "You need to accept terms of service");
   }
 
   return _createFormState();
 };
 
-export default function OrderModal({ course, onClose }) {
+export default function OrderModal({ course, onClose, onSubmit }) {
   const [isOpen, setIsOpen] = useState(false);
   const [order, setOrder] = useState(defaultOrder);
   const [enablePrice, setEnablePrice] = useState(false);
+  const [acceptedTOS, setAcceptedTOS] = useState(false);
   const { eth } = useEthPrice();
 
   useEffect(() => {
@@ -45,10 +48,12 @@ export default function OrderModal({ course, onClose }) {
   const closeModal = () => {
     setIsOpen(false);
     setOrder(defaultOrder);
+    setAcceptedTOS(false);
+    setEnablePrice(false);
     onClose();
   };
 
-  const formState = createFormState(order);
+  const formState = createFormState(order, acceptedTOS);
 
   return (
     <Modal isOpen={isOpen}>
@@ -151,7 +156,14 @@ export default function OrderModal({ course, onClose }) {
               </div>
               <div className="text-xs text-gray-700 flex">
                 <label className="flex items-center mr-2">
-                  <input type="checkbox" className="form-checkbox" />
+                  <input
+                    checked={acceptedTOS}
+                    onChange={({ target: { checked } }) => {
+                      setAcceptedTOS(checked);
+                    }}
+                    type="checkbox"
+                    className="form-checkbox"
+                  />
                 </label>
                 <span>
                   I accept Eincode &apos;terms of service&apos; and I agree that
@@ -160,7 +172,7 @@ export default function OrderModal({ course, onClose }) {
                 </span>
               </div>
               {formState.message && (
-                <div className="p-4 my-3 text-red-700 bg-red-200 rounded-lg text-sm">
+                <div className="p-4 my-3 text-yellow-700 bg-yellow-200 rounded-lg text-sm">
                   {formState.message}
                 </div>
               )}
@@ -171,7 +183,7 @@ export default function OrderModal({ course, onClose }) {
           <Button
             disabled={formState.isDisabled}
             onClick={() => {
-              alert(JSON.stringify(order));
+              onSubmit(order)
             }}
           >
             Submit
