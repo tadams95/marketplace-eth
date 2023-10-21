@@ -1,19 +1,22 @@
+import { Button, Message } from "@/components";
 import { OwnedCourseCard } from "@/components/ui/course";
 import { BaseLayout } from "@/components/ui/layout";
 import { MarketHeader } from "@/components/ui/marketplace";
 
-
 export default function OwnedCourses() {
-
-    return (
-        <>
+  return (
+    <>
+      <div className="py-4">
         <MarketHeader />
-        <section className="grid grid-cols-1">
-            <OwnedCourseCard />
-
-        </section>
-        </>
-    )
+      </div>
+      <section className="grid grid-cols-1">
+        <OwnedCourseCard>
+          <Message>My custom message!</Message>
+          <Button>Watch the course</Button>
+        </OwnedCourseCard>
+      </section>
+    </>
+  );
 }
 
-OwnedCourses.Layout = BaseLayout
+OwnedCourses.Layout = BaseLayout;
