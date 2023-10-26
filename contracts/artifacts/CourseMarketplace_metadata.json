@@ -19,13 +19,7 @@
 					}
 				],
 				"name": "purchaseCourse",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
+				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
 			}
@@ -58,11 +52,11 @@
 	},
 	"sources": {
 		"contracts/CourseMarketplace.sol": {
-			"keccak256": "0x5264efb92095f2a19d26a0bf41f737c85f65854205f7d02d46ce65377f64169c",
+			"keccak256": "0x261d80e821f9d0fd0853ab474900b15fe09840f67a95499710999bbaaad16f97",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fc30a869f3cb276a37d69622d790311cf3864af91045c81d841dba4da597b939",
-				"dweb:/ipfs/QmQg5ACNtSUTFd7ZY1zk3cnBuykkkJAB7gmmhct291gKVG"
+				"bzz-raw://175b38e10e4061c5b4bf75ae63a0421d489c0ac0249f69617f3dbdc7eb6aadf4",
+				"dweb:/ipfs/QmVcs9xdMLWFGXuEfLwUb8R9zYyX63PZya7sA752ScPYQS"
 			]
 		}
 	},
