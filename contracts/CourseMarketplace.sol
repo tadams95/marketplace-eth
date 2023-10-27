@@ -28,12 +28,21 @@ contract CourseMarketplace {
     //number of all courses + id of the course
     uint private totalOwnedCourses;
 
+    // Course already has an Owner
+    error CourseHasOwner();
+
     function purchaseCourse(
         bytes16 courseId, //0x00000000000000000000000000003130
         bytes32 proof ////0x0000000000000000000000000000313000000000000000000000000000003130
     ) external payable {
         bytes32 courseHash = keccak256(abi.encodePacked(courseId, msg.sender));
+
+        if (hasCourseOwnership(courseHash)) {
+            revert CourseHasOwner();
+        }
+
         uint id = totalOwnedCourses++;
+
         ownedCourseHash[id] = courseHash;
         ownedCourses[courseHash] = Course({
             id: id,
@@ -56,5 +65,11 @@ contract CourseMarketplace {
         bytes32 courseHash
     ) external view returns (Course memory) {
         return ownedCourses[courseHash];
+    }
+
+    function hasCourseOwnership(
+        bytes32 courseHash
+    ) private view returns (bool) {
+        return ownedCourses[courseHash].owner == msg.sender;
     }
 }
