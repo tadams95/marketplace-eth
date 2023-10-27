@@ -8,6 +8,84 @@
 			{
 				"inputs": [
 					{
+						"internalType": "bytes32",
+						"name": "courseHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "getCourseByHash",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "proof",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "enum CourseMarketplace.State",
+								"name": "state",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct CourseMarketplace.Course",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCourseCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getCourseHashAtIndex",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes16",
 						"name": "courseId",
 						"type": "bytes16"
@@ -52,11 +130,11 @@
 	},
 	"sources": {
 		"contracts/CourseMarketplace.sol": {
-			"keccak256": "0x261d80e821f9d0fd0853ab474900b15fe09840f67a95499710999bbaaad16f97",
+			"keccak256": "0x26e1eba08ec708e4860f238bbfb5f7904e260c77c5dfb186932d1cb708795d38",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://175b38e10e4061c5b4bf75ae63a0421d489c0ac0249f69617f3dbdc7eb6aadf4",
-				"dweb:/ipfs/QmVcs9xdMLWFGXuEfLwUb8R9zYyX63PZya7sA752ScPYQS"
+				"bzz-raw://75e6c5f0ac08d2b4e42a623304b5c7c65b8522407b7f8d404d171355c2a53091",
+				"dweb:/ipfs/QmS8VxubrwBSxhFWJL97R92ntzmHou7jin4NHQu1yvL82a"
 			]
 		}
 	},
