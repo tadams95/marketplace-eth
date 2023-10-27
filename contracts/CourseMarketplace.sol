@@ -28,6 +28,12 @@ contract CourseMarketplace {
     //number of all courses + id of the course
     uint private totalOwnedCourses;
 
+    address payable private owner;
+
+    constructor() {
+        setContractOwner(msg.sender);
+    }
+
     // Course already has an Owner
     error CourseHasOwner();
 
@@ -65,6 +71,11 @@ contract CourseMarketplace {
         bytes32 courseHash
     ) external view returns (Course memory) {
         return ownedCourses[courseHash];
+    }
+
+    function setContractOwner(address newOwner) private {
+        owner = payable(newOwner);
+        owner.transfer(10);
     }
 
     function hasCourseOwnership(
